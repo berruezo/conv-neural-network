@@ -1,14 +1,21 @@
 #coding:utf-8
 '''
-Implementación de una red neuronal simple
-Se entrena con un conjunto de tests mediante backpropagation
+Implementación de una red neuronal convolucional
+Por el momento la topología de la red (excepto las capas finales) será constante: [CONV-RELU-CONV-RELU-POOL]x3 - FC - SOFTMAX
 '''
 import numpy as np
 import time
 
+#Constantes para FC layer
 LR = 0.01 #Para gradient descent
 MIN_ERROR = .005 #Mínimo error de la red a partir del cual se considerará entrenada
 BATCH_SIZE = 10 #Cantidad de tests que examinará la red para modificar los pesos
+
+#Constantes para Conv Layers
+FILTERS = 12 #Número de filtros en cada capa convolucional (profundidad de la salida)
+FILTER_SIZE = 5 #Tamaño (ancho y alto) de cada filtro de las capas convolucionales
+STRIDE = 1 #Píxeles que avanza el filtro para cada neurona
+ZERO_PADDING = 0 #Anchura del marco de 0s que rodea la imagen
 
 class Network:
     def __init__(self, shape):
